@@ -1,0 +1,91 @@
+<div  class="main">
+  <h1>New Task</h1>
+  <div class="container">
+    <%=form_with model: @task do |t| %>
+      <div>
+      <%=t.label :title, class:"label" %>
+      <%= t.text_field :title,  class:"field"%>
+      </div>
+      <div>
+      <%=t.label :details,  class:"label" %>
+      <%= t.text_field :details, class:"field" %>
+      </div>
+      <div>
+      <%= t.label :completed,  class:"label completed"%>
+      <%=t.check_box :completed %>
+      </div>
+      <%=t.submit "Create Task", class:"button" %>
+    <% end %>
+  </div>
+  <%# <a  type="button" class="btn btn-outline-primary" href="/tasks">Create Task</a> %>
+
+  <%= link_to "Back to list", tasks_path, class:"label back" %>
+</div>
+
+
+<%# <style>
+.container{
+  margin:50px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+
+}
+
+.main{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center:
+}
+
+.field{
+  border:3px solid rgb(113, 130, 226);
+  border-radius:3px;
+  padding-top:5px;
+  margin-top:20px;
+  width:400px;
+}
+
+h1{
+   display:flex;
+  align-items:center;
+  color:rgb(43, 60, 160);
+  font-weight:bolder;
+  letter-spacing:4px;
+  margin-left:40%;
+  margin-top:10%;
+}
+
+.label{
+  font-size:18px;
+  letter-spacing:1px;
+  color:rgb(43, 60, 160);
+  font-weight:bolder;
+}
+
+.back{
+  margin-left:70px;
+}
+
+.completed{
+  margin-top:20px;
+}
+
+.button{
+  background-color: rgb(113, 130, 226);
+  border: 2px solid rgb(43, 60, 160);
+  padding:10px 20px;
+  border-radius:5px;
+  font-size:25px;
+  font-weight:bold;
+  color:white;
+  box-shadow:none;
+  margin-top:30px;
+}
+
+.button:hover{
+  color:black;
+}
+</style> %>

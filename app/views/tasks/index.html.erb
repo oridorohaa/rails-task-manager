@@ -1,0 +1,50 @@
+
+
+<h1>My Tasks</h1>
+<ul>
+<% @tasks.each do |task| %>
+    <li>
+      <input type="checkbox" class="checkbox" id="<%=task.id%>">
+      <a href="/tasks/<%=task.id%>" class="label list"><%=task.title %></a>
+      <%= link_to "🗑",
+      task_path(task),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
+    </li>
+<% end %>
+</ul>
+
+<a href="tasks/new" class="label back"> Add new task </a>
+
+<script>
+let checkboxs = document.querySelectorAll(".checkbox")
+if (checkboxs) {
+  console.log('defined')
+} else {
+  console.log('not defined')
+   checkboxs = document.querySelectorAll(".checkbox")
+}
+checkboxs.forEach((checkbox) => {
+  console.dir(checkbox)
+
+  const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+  const headers = new Headers({
+        'X-CSRF-TOKEN': csrf
+    });
+
+  checkbox.addEventListener("change", (event) => {
+    // event.preventDefault()
+    const id = event.currentTarget.id
+
+
+    fetch(`tasks/complete/${id}`,{
+      method: "PATCH",
+      headers
+    })
+
+
+  })
+
+})
+</script>
